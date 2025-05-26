@@ -1,8 +1,7 @@
-import SimplexNoise from 'simplex-noise';
+import { createNoise3D } from 'simplex-noise';
 
 const canvas = document.getElementById('flame') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d')!;
-const simplex = new SimplexNoise();
 
 const flameCenter = { x: canvas.width / 2, y: canvas.height - 60 };
 const flameHeight = 110;
@@ -19,7 +18,7 @@ function drawFlame(time: number) {
   const edgePoints: { x: number; y: number }[] = [];
   ctx.beginPath();
   for (let i = 0; i <= Math.PI; i += 0.04) {
-    const noise = simplex.noise3D(
+    const noise = createNoise3D(
       Math.cos(i) * 0.6,
       Math.sin(i) * 0.6,
       time * 0.0009
